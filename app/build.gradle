@@ -39,4 +39,14 @@ dependencies {
 
     implementation "com.orhanobut:hawk:2.0.1"
 
+    implementation 'org.osmdroid:osmdroid-android:6.1.6'
+    implementation 'org.osmdroid:osmdroid-wms:6.1.6'
+    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.6'
+    //implementation 'org.osmdroid:osmdroid-geopackage:6.1.6'
+    implementation 'org.osmdroid:osmdroid-third-party:6.0.1'
+    implementation 'org.osmdroid:osmdroid-shape:6.1.6'
+    //implementation 'com.github.MKergall:osmbonuspack:6.6.0'
+
+    //implementation 'com.android.support:multidex:1.0.3'
+
 }
