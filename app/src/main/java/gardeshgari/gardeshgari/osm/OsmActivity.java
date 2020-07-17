@@ -25,14 +25,19 @@ import gardeshgari.gardeshgari.R;
 import gardeshgari.gardeshgari.utils.BaseActivity;
 
 @EActivity(R.layout.activity_osm)
-public class OsmActivity extends BaseActivity {
+public class OsmActivity extends BaseActivity implements Contract.View{
+    Presenter presenter = new Presenter();
+    String text;
+    double lat , lon ;
 
     @ViewById
     MapView map;
 
     @AfterViews
     void init(){
-        //presenter.attachview(this);
+        presenter.attachview(this);
+        presenter.gettext();
+        presenter.getlocate();
 
         getPermition();
         map = findViewById(R.id.map);
@@ -59,7 +64,7 @@ public class OsmActivity extends BaseActivity {
 //        double longitude = location.getLongitude();
 //        double latitude = location.getLatitude();
 
-        GeoPoint startPoint = new GeoPoint(35.717878 , 51.412612 );
+        GeoPoint startPoint = new GeoPoint(lat , lon );
         mapController.setCenter(startPoint);
 
         Marker startMarker = new Marker(map);
@@ -68,7 +73,7 @@ public class OsmActivity extends BaseActivity {
         map.getOverlays().add(startMarker);
         map.invalidate();
         startMarker.setIcon(getResources().getDrawable(R.drawable.pin));
-        startMarker.setTitle("hhhhhhh");
+        startMarker.setTitle(text);
         startMarker.showInfoWindow();
 
 
@@ -110,4 +115,14 @@ public class OsmActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void recieveText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public void recivelocate(double lat, double lon) {
+        this.lat = lat;
+        this.lon = lon;
+    }
 }
