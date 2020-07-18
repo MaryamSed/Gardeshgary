@@ -1,5 +1,6 @@
 package gardeshgari.gardeshgari.utils.Retrofit;
 
+import gardeshgari.gardeshgari.Login.UsersModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,8 +20,7 @@ public interface EndPoint {
 
     @FormUrlEncoded
     @POST("PhpProject1/login.php")
-    //Call<OM> login(
-    Call<Void> login(
+    Call<UsersModel> login(
             @Field("mobile") String mobile,
             @Field("password") String password
     );

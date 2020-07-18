@@ -1,5 +1,6 @@
-package gardeshgari.gardeshgari.Register;
+package gardeshgari.gardeshgari.Login;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,40 +15,42 @@ import gardeshgari.gardeshgari.R;
 import gardeshgari.gardeshgari.utils.BaseActivity;
 import gardeshgari.gardeshgari.utils.Gen;
 
-@EActivity(R.layout.activity_register)
-public class RegisterActivity extends BaseActivity implements Contract.View {
-
-    Identity User = new Identity();
+@EActivity(R.layout.activity_login)
+public class LoginActivity extends BaseActivity implements Contract.View {
     Contract.Presenter presenter = (Contract.Presenter)new Presenter();
+    UsersModel User = new UsersModel();
 
     @ViewById
-    EditText name , family , mobile ,  password , passwordrepeat;
+    EditText mobile , password;
     @ViewById
-    Button register;
-
+    Button login , register;
     @AfterViews
     void init(){
-        presenter.attachview(this);
+        presenter.attachview((Contract.View) this);
     }
-
     @Click
-    void register(){
-        User.setName(name.getText().toString());
-        User.setFamily(family.getText().toString());
+    void login(){
         User.setMobile(mobile.getText().toString());
         User.setPassword(password.getText().toString());
 
-        presenter.registerUser(User);
+        presenter.login(User);
 
         dialog.show();
-
-        User.setName("");
-        User.setFamily("");
-        User.setMobile("");
+        mobile.setText("");
+        password.setText("");
     }
+
     @Override
-    public void get_msg(String msg) {
-        Gen.toast(msg);
-        dialog.dismiss();
+    public void gettoken(String token) {
+        Gen.toast("خوش آمدید");
+        if(token!=null){
+            //startActivity(new Intent(mcontext, ***.class));
+            dialog.dismiss();
+        }
+
+    }
+    @Click
+    void register(){
+        //startActivity(new Intent(mcontext , RegisterActivity_.class));
     }
 }
