@@ -15,8 +15,8 @@ public class Model implements Contract.Model {
 
     @Override
     public void getlocate() {
-        double longitude =35.717878;
-        double latitude = 51.412612;
+        double longitude = 35.729212;
+        double latitude =  51.418870;
         presenter.sendlocat(latitude , longitude);
 
     }

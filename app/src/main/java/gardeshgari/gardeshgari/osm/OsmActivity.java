@@ -3,12 +3,14 @@ package gardeshgari.gardeshgari.osm;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
@@ -25,7 +27,7 @@ import gardeshgari.gardeshgari.R;
 import gardeshgari.gardeshgari.utils.BaseActivity;
 
 @EActivity(R.layout.activity_osm)
-public class OsmActivity extends BaseActivity implements Contract.View{
+public class OsmActivity extends BaseActivity implements Contract.View,LocationListener {
     Presenter presenter = new Presenter();
     String text;
     double lat , lon ;
@@ -40,7 +42,7 @@ public class OsmActivity extends BaseActivity implements Contract.View{
         presenter.getlocate();
 
         getPermition();
-        map = findViewById(R.id.map);
+
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
 
@@ -60,11 +62,12 @@ public class OsmActivity extends BaseActivity implements Contract.View{
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        double longitude = location.getLongitude();
-//        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
 
-        GeoPoint startPoint = new GeoPoint(lat , lon );
+        GeoPoint startPoint = new GeoPoint( latitude , longitude );
         mapController.setCenter(startPoint);
 
         Marker startMarker = new Marker(map);
@@ -75,19 +78,16 @@ public class OsmActivity extends BaseActivity implements Contract.View{
         startMarker.setIcon(getResources().getDrawable(R.drawable.pin));
         startMarker.setTitle(text);
         startMarker.showInfoWindow();
-
-
-
     }
 
-//    public void onResume() {
-//        super.onResume();
-//        //this will refresh the osmdroid configuration on resuming.
-//        //if you make changes to the configuration, use
-//        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-//        map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
-//    }
+    public void onResume() {
+        super.onResume();
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+        map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+    }
 
     public void onPause() {
         super.onPause();
@@ -124,5 +124,26 @@ public class OsmActivity extends BaseActivity implements Contract.View{
     public void recivelocate(double lat, double lon) {
         this.lat = lat;
         this.lon = lon;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+        Log.d("Latitude","status");
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+        Log.d("Latitude","enable");
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+        Log.d("Latitude","disable");
     }
 }
