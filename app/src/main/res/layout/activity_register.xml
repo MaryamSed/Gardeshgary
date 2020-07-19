@@ -7,42 +7,62 @@
     android:padding="12dp"
     android:orientation="vertical"
     tools:context=".Register.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <gardeshgari.gardeshgari.CustomView.MyEditText
+                android:textAlignment="center"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="60dp"
+                android:baselineAligned="false"
+                android:hint="نام" />
+            <gardeshgari.gardeshgari.CustomView.MyEditText
+                android:textAlignment="center"
+                android:id="@+id/family"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="نام خوانوادگی" />
+            <gardeshgari.gardeshgari.CustomView.MyEditText
+                android:textAlignment="center"
+                android:id="@+id/mobile"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="شماره تلفن همراه" />
+            <gardeshgari.gardeshgari.CustomView.MyEditText
+                android:textAlignment="center"
+                android:id="@+id/password"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="رمز عبور" />
+            <gardeshgari.gardeshgari.CustomView.MyEditText
+                android:textAlignment="center"
+                android:id="@+id/passwordrepeat"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="تکرار رمز عبور" />
+            <gardeshgari.gardeshgari.CustomView.MyButton
+                android:layout_marginTop="20dp"
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="ثبت نام" />
+
+        </LinearLayout>
+
+    </ScrollView>
     
-    <gardeshgari.gardeshgari.CustomView.MyEditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="60dp"
-        android:baselineAligned="false"
-        android:hint="نام" />
-    <gardeshgari.gardeshgari.CustomView.MyEditText
-        android:id="@+id/family"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="نام خوانوادگی" />
-    <gardeshgari.gardeshgari.CustomView.MyEditText
-        android:id="@+id/mobile"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="شماره تلفن همراه" />
-    <gardeshgari.gardeshgari.CustomView.MyEditText
-        android:id="@+id/password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="رمز عبور" />
-    <gardeshgari.gardeshgari.CustomView.MyEditText
-        android:id="@+id/passwordrepeat"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="تکرار رمز عبور" />
-    <gardeshgari.gardeshgari.CustomView.MyButton
-        android:layout_marginTop="20dp"
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="ثبت نام" />
+
 
 </LinearLayout>

@@ -9,11 +9,13 @@
     tools:context=".Login.LoginActivity">
 
     <gardeshgari.gardeshgari.CustomView.MyEditText
+        android:textAlignment="center"
         android:id="@+id/mobile"
         android:hint="شماره تلفن همراه"
         android:layout_width="match_parent"
         android:layout_height="70dp" />
     <gardeshgari.gardeshgari.CustomView.MyEditText
+        android:textAlignment="center"
         android:inputType="textPassword"
         android:id="@+id/password"
         android:hint="رمز عبور "
